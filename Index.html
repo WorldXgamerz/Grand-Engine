@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grand Engine</title>
+  <link rel="icon" href="./Chrome.jpg" type="image/x-icon">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #3B3131;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+	  text: White;
+    }
+
+    .logo {
+      margin-bottom: 30px;
+    }
+
+    .logo img {
+      width: 250px;
+      height: 250px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      width: 560px;
+      border: 1px solid white;
+      box-shadow: 0 1px 6px rgba(32,33,36,.28);
+      border-radius: 24px;
+      padding: 10px 20px;
+      margin-bottom: 40px;
+    }
+
+    .search-box input {
+      border: 5px;
+      outline: 3px;
+      font-size: 16px;
+      flex: 1;
+    }
+
+    .shortcuts {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .shortcut {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 80px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+    }
+
+    .shortcut-icon {
+      background-color: #f1f3f4;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+
+    .shortcut-icon img {
+      width: 24px;
+      height: 24px;
+    }
+	 input[type="text"] {
+      width: 400px;
+      padding: 10px;
+      font-size: 18px;
+    }
+  </style>
+
+</head>
+<body>
+
+  <div class="logo">
+    <img src="./Logo.png" alt="Aditya Search Engine" />
+  </div>
+    <div class="search-box" id="smartSearchForm"> 
+    <form action="https://www.google.com/search" method="GET" target="_blank" id="smartSearchForm">
+    <input type="text" name="q" id="inputBox" placeholder="Search or type a URL" style="width: 540px; height: 30px; font-size: 16px;">
+  </form>
+	</div>
+  <div class="shortcuts">
+    <a href="https://www.youtube.com" class="shortcut" target="_blank">
+      <div class="shortcut-icon">
+        <img src="./Youtube.png" alt="YouTube" />
+      </div>
+      <span>YouTube</span>
+    </a>
+    <a href="https://drive.google.com/drive/quota" class="shortcut" target="_blank">
+      <div class="shortcut-icon">
+        <img src="./Drive.png" alt="Drive" />
+      </div>
+      <span>Drive</span>
+    </a>
+    <a href="https://www.gmail.com" class="shortcut" target="_blank">
+      <div class="shortcut-icon">
+        <img src="./gmail.jpg" alt="Gmail" />
+      </div>
+      <span>Gmail</span>
+    </a>
+    <a href="./Minecraft.html" class="shortcut" target="_blank">
+      <div class="shortcut-icon">
+        <img src="./Minecraft.png" alt="Minecraft" />
+      </div>
+      <span>Minecraft</span>
+    </a>
+	<a href="https://mail.google.com/mail/u/0/#inbox?compose=DmwnWrRqhbzlcvfRdVfLPjGCXPhRCFFGCnlQMWlmtSKkFSZMtNZnFZLJMcnRBwcblXHJMpSVHBWg" class="shortcut" target="_blank">
+      <div class="shortcut-icon">
+        <img src="./Contact.png" alt="Minecraft" />
+      </div>
+      <span>Report</span>
+    </a>
+  </div>
+     <script>
+    const form = document.getElementById('smartSearchForm');
+    const input = document.getElementById('inputBox');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const userInput = input.value.trim();
+
+      // Regular expression to test if it's a valid URL
+      const urlPattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}([\/\w\-.~?&=]*)*\/?$/;
+
+      if (urlPattern.test(userInput)) {
+        // If it doesn't start with http/https, add it
+        const finalUrl = userInput.startsWith("http") ? userInput : "https://" + userInput;
+        window.location.href = finalUrl;
+      } else {
+        // If not a URL, treat it as a search term
+        const searchQuery = encodeURIComponent(userInput);
+        window.location.href = "https://www.google.com/search?q=" + searchQuery;
+      }
+    });
+  </script>
+</body>
+</html>
